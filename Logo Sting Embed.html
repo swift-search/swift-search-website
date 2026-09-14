@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Swift Search — Logo Sting (embed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,800;1,800&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif}
+a{color:#60a5fa}a:hover{color:#93c5fd}
+[data-omelette-chrome]{display:none!important}
+</style>
+<script>window.OM_SCENES = '[{"name":"Ignite","dur":0.12,"desc":"The deep blue backdrop and grid fade up out of black"},{"name":"Swoosh","dur":0.5,"desc":"The Swift Search lockup sweeps in from the left and settles with a spring"},{"name":"Hold","dur":2.7,"desc":"A blue glow pulses behind the logo and the tagline rises into place, then the frame holds"},{"name":"Out","dur":1.3,"desc":"Everything fades slowly back to black"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var get = Storage.prototype.getItem, set = Storage.prototype.setItem;
+  Storage.prototype.getItem = function(k){ return /^animstage/.test(k) ? '0' : get.call(this, k); };
+  Storage.prototype.setItem = function(k, v){ if (/^animstage/.test(k)) return; return set.call(this, k, v); };
+})();
+</script>
+<script type="text/babel" src="animations-v3.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+<img src="swift-logo-lockup.png" alt="" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none" />
+<script type="text/babel">
+const glide = (p) => 1 - Math.pow(1 - p, 3.2);
+const softSpring = (p) => { const t = Math.min(1, p); return 1 - Math.exp(-5.2 * t) * (Math.cos(6.4 * t) + 0.81 * Math.sin(6.4 * t)); };
+const MOTION = { enter: glide, settle: softSpring, close: Easing.easeInOutSine };
+
+function Sting() {
+  const { T, CUES, authoredTotal } = useComposition();
+
+  const bgUp = animate({ from: 0, to: 1, start: 0, end: 0.32, ease: Easing.easeInOutSine })(T);
+  const fadeOut = animate({ from: 0, to: 1, start: CUES.Out, end: authoredTotal, ease: MOTION.close })(T);
+  const swoosh = animate({ from: 0, to: 1, start: CUES.Swoosh, end: CUES.Swoosh + 0.52, ease: MOTION.settle })(T);
+  const logoFade = animate({ from: 0, to: 1, start: CUES.Swoosh, end: CUES.Swoosh + 0.26, ease: Easing.easeInOutSine })(T);
+  const logoScale = animate({ from: 1.05, to: 1, start: CUES.Swoosh, end: CUES.Swoosh + 0.52, ease: MOTION.enter })(T);
+  const tagline = animate({ from: 0, to: 1, start: CUES.Hold + 0.08, end: CUES.Hold + 0.42, ease: Easing.easeInOutSine })(T);
+  const taglineRise = animate({ from: 22, to: 0, start: CUES.Hold + 0.08, end: CUES.Hold + 0.42, ease: MOTION.enter })(T);
+
+  const pulseP = clamp((T - CUES.Hold) / 0.82, 0, 1);
+  const pulse = 0.5 - 0.5 * Math.cos(pulseP * Math.PI * 2);
+  const drift = Math.sin((T / 4.6) * Math.PI * 2) * 0.006;
+  const glowRadius = 62 + pulse * 68;
+  const glowOpacity = 0.17 + pulse * 0.2;
+
+  const logoX = (1 - swoosh) * -110;
+  const logoOpacity = logoFade * (1 - fadeOut);
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
+      <div style={{ position: 'absolute', inset: 0, opacity: bgUp * (1 - fadeOut), background: 'radial-gradient(1400px 700px at 50% -5%, rgba(59,130,246,0.40), transparent 55%), radial-gradient(900px 600px at 80% 30%, rgba(29,47,110,0.60), transparent 65%), linear-gradient(180deg, #0a1130 0%, #070a22 40%, #06091f 100%)' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '72px 72px', maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, transparent 75%)', WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, transparent 75%)' }} />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', opacity: logoOpacity }}>
+        <div style={{ width: glowRadius * 6, height: glowRadius * 3, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(59,130,246,' + glowOpacity + ') 0%, transparent 70%)', filter: 'blur(24px)' }} />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: logoOpacity, transform: 'translateX(' + logoX + '%) scale(' + (logoScale + drift) + ')' }}>
+        <img src="swift-logo-lockup.png" alt="Swift Search" style={{ height: 160, width: 'auto', filter: 'drop-shadow(0 0 40px rgba(59,130,246,0.55))' }} />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 230, transform: 'translateY(' + taglineRise + 'px)', opacity: tagline * (1 - fadeOut), pointerEvents: 'none' }}>
+        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontStyle: 'italic', fontSize: 32, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(96,165,250,0.80)' }}>The whole web, a click away</span>
+      </div>
+    </div>
+  );
+}
+
+const STING_TOTAL = 4.62;
+
+function Gate() {
+  const waits = new URLSearchParams(location.search).get('wait') === '1';
+  const [run, setRun] = React.useState(waits ? 0 : 1);
+  React.useEffect(() => {
+    if (!waits) return;
+    const onMsg = (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'sting:play') setRun((n) => n + 1);
+      if (e.data.type === 'sting:reset') setRun(0);
+    };
+    window.addEventListener('message', onMsg);
+    if (window.parent !== window) window.parent.postMessage({ type: 'sting:ready' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, [waits]);
+  React.useEffect(() => {
+    if (!run || window.parent === window) return;
+    const id = setTimeout(() => window.parent.postMessage({ type: 'sting:done' }, '*'), STING_TOTAL * 1000);
+    return () => clearTimeout(id);
+  }, [run]);
+  if (!run) return <div style={{ position: 'absolute', inset: 0, background: '#000' }} />;
+  return (
+    <CompositionStage key={run} width={1920} height={1080} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#000">
+      <Sting />
+    </CompositionStage>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Gate />);
+</script>
+</body>
+</html>
