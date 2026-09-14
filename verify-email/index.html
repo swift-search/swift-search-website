@@ -58,5 +58,92 @@
 </div>
 </div>
 </footer>
+<script>
+/* Swift Search — verify-email.
+   Added to Claude Design's markup; nothing above this line was changed.
+
+   Two things about page.css that shape this code:
+   - .status is display:flex, and the spinner is a SIBLING of the <p>, not
+     inside it. So a status is rebuilt as [spinner?] + one <p>. Two <p>
+     elements would sit side by side, hence one paragraph per message.
+   - [hidden] is display:none!important, so visibility is the attribute
+     alone; the class never has to be cleared to hide something. */
+(function () {
+  'use strict';
+
+  var BACKEND = 'https://swift-search-backend.onrender.com';
+
+  var statusEl = document.getElementById('status');
+  var doneEl = document.getElementById('done');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function show(kind, html, withSpinner) {
+    statusEl.className = 'status status--' + kind;
+    statusEl.innerHTML = (withSpinner ? '<span class="spinner"></span>' : '') +
+                         '<p>' + html + '</p>';
+  }
+
+  var token = new URLSearchParams(window.location.search).get('token');
+
+  if (!token) {
+    show('error',
+      '<strong>This link is incomplete.</strong> Open the link in your ' +
+      'verification email directly rather than copying part of it — the ' +
+      'address needs everything after the question mark.');
+    doneEl.hidden = false;
+    return;
+  }
+
+  // The backend sleeps when idle and can take a moment to wake. Say so
+  // rather than leaving the spinner looking stuck.
+  var slow = setTimeout(function () {
+    if (statusEl.classList.contains('status--working')) {
+      show('working', 'Still checking — this can take a few seconds.', true);
+    }
+  }, 4000);
+
+  fetch(BACKEND + '/api/auth/verify-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: token })
+  })
+    .then(function (res) {
+      return res.json().catch(function () { return {}; })
+        .then(function (data) { return { ok: res.ok, data: data }; });
+    })
+    .then(function (r) {
+      clearTimeout(slow);
+      doneEl.hidden = false;
+
+      if (r.ok && r.data && r.data.ok) {
+        var who = r.data.email ? ' for <strong>' + esc(r.data.email) + '</strong>' : '';
+        show('ok',
+          '<strong>Email verified.</strong> Your account' + who + ' is ready — ' +
+          'open Swift Search in Chrome and sign in with your email and password.');
+        return;
+      }
+
+      var msg = (r.data && r.data.error) ||
+                'This verification link is invalid or has expired.';
+      show('error',
+        '<strong>' + esc(msg) + '</strong> Verification links last 24 hours. ' +
+        'Sign up again in the extension for a fresh one — or if you have ' +
+        'already verified this address, just sign in as normal.');
+    })
+    .catch(function () {
+      clearTimeout(slow);
+      doneEl.hidden = false;
+      show('error',
+        '<strong>We could not reach the Swift Search server.</strong> Check ' +
+        'your internet connection and reload this page. If it keeps happening, ' +
+        'email swiftsearch@outlook.com.');
+    });
+})();
+</script>
 </body>
 </html>
