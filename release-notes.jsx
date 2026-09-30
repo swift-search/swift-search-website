@@ -57,6 +57,21 @@ function ReleaseHero() {
 
 const RELEASES = [
   {
+    version: '4.0.1', date: 'October 2026',
+    entries: [
+      { tag: 'new', tagLabel: 'New', title: 'Spelling now gets checked as you type', body: (
+        <p>Typing in the floating menu now underlines misspelled words in red, just like it does everywhere else in your browser — right-click a word to fix it. You can turn this on or off in Settings if you'd rather not have it.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Currency conversion', body: (
+        <p>Highlight a price anywhere on the web — a receipt, a product page, a news article — and Swift Search offers to convert it for you. It now recognizes far more currencies than before, so this works in a lot more places.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Translate', body: (
+        <p>When you highlight text in another language, Swift Search notices and offers to translate it. It's now much better at telling real foreign text apart from English, so you'll see the offer more often when it's genuinely useful, and less often when it isn't.</p>) },
+      { tag: 'fixed', tagLabel: 'Fixed', title: 'Asking about your account', body: (
+        <p>You can type a plain question like <em>"where do I find my orders?"</em> and Swift Search will try to answer it directly. Questions about orders, deliveries, tracking, and returns used to come back empty — that's fixed.</p>) },
+      { tag: 'fixed', tagLabel: 'Fixed', title: 'Find the button', body: (
+        <p>Ask something like <em>"where do I cancel my subscription?"</em> and Swift Search finds the right button on the page and points you to it — even opening a menu for you if the option is hidden inside one. It's now more accurate at doing this.</p>) },
+    ],
+  },
+  {
     version: '4.0.0', date: 'September 2026',
     entries: [
       { tag: 'changed', tagLabel: 'Changed', title: 'Swift AI runs in the cloud', body: (
@@ -143,7 +158,7 @@ function Footer() {
             <a className="brand foot-brand" href={MAIN} style={{ display: 'inline-flex', marginBottom: 18 }}>
               <SwiftLogo size={40}/>
             </a>
-            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere, all in one click.</p>
+            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere. All in one click.</p>
           </div>
           <div>
             <h6>Product</h6>
@@ -168,7 +183,7 @@ function Footer() {
             <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.5, fontWeight: 500 }}>Developed by</span>
             <img src="uploads/sinope_lockup_gray_diamond_gray_text_cutout.png" alt="Sinope" style={{ height: 56, width: 'auto' }} />
           </a>
-          <span>v4.0.0 · Last updated 13 September 2026</span>
+          <span>v4.0.1 · Last updated October 2026</span>
         </div>
       </div>
     </footer>

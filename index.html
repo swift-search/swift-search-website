@@ -169,18 +169,16 @@
   /* Hero */
   .hero { padding: 110px 0 60px; text-align: center; position: relative; }
   .hero .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px; border-radius: 999px;
-    border: 1px solid rgba(86,139,250,0.45);
-    background: rgba(86,139,250,0.10);
-    color: var(--blue-soft);
-    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+    display: inline-flex; align-items: center;
+    padding: 10px 22px; border-radius: 999px;
+    border: 0;
+    background: #fff;
+    box-shadow: 0 10px 30px -8px rgba(86,139,250,0.6);
+    color: #0b1020;
+    font-size: 13px; font-weight: 800; letter-spacing: 0.16em;
     text-transform: uppercase;
   }
-  .hero .eyebrow .dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--blue-soft);
-    box-shadow: 0 0 12px var(--blue-soft);
-  }
+  .hero .eyebrow .dot { display: none; }
   .hero h1 {
     font-size: clamp(48px, 7.5vw, 104px);
     line-height: 1.02; letter-spacing: -0.035em;
@@ -283,8 +281,11 @@
 
   /* DEMO panel */
   .demo-shell {
-    width: 65%;
+    --grow: 0;
+    width: calc(55% + 45% * var(--grow));
+    max-width: 1180px;
     margin-inline: auto;
+    will-change: width;
     border-radius: 22px;
     background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
     border: 1px solid var(--line-2);
@@ -552,14 +553,14 @@
 
   /* the stats read as a quiet footnote to the three steps, not a second section */
   .stats-block {
-    margin-top: 40px; padding-top: 28px;
+    margin-top: 56px; padding-top: 40px;
     border-top: 1px solid var(--line);
     display: flex; align-items: baseline; justify-content: center;
     gap: 40px; flex-wrap: wrap;
   }
-  .stats-lead { font-size: 14px; color: var(--ink-3); margin: 0; }
+  .stats-lead { font-size: 18px; color: var(--ink-3); margin: 0; }
   .stats-block .stats {
-    display: flex; gap: 40px; background: none; border: none;
+    display: flex; gap: 56px; background: none; border: none;
     border-radius: 0; overflow: visible; flex-wrap: wrap;
   }
 
@@ -604,6 +605,8 @@
     border-radius: 18px;
     transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease, background .22s ease;
   }
+  .feature { opacity: var(--p, 1); translate: 0 calc((1 - var(--p, 1)) * 56px); scale: calc(0.93 + 0.07 * var(--p, 1)); will-change: opacity, translate; }
+  @media (prefers-reduced-motion: reduce) { .feature { opacity: 1; translate: none; scale: none; } }
   .feature:hover {
     border-color: rgba(86,139,250,0.45);
     background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)), #070c22;
@@ -629,6 +632,11 @@
     background: rgba(255,255,255,0.02);
     position: relative;
   }
+  .steps .step { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+  .steps.in .step { opacity: 1; transform: none; }
+  .steps.in .step:nth-child(2) { transition-delay: .12s; }
+  .steps.in .step:nth-child(3) { transition-delay: .24s; }
+  @media (prefers-reduced-motion: reduce) { .steps .step { opacity: 1; transform: none; transition: none; } }
   .step .num {
     font-family: var(--mono); font-size: 12px; color: var(--blue-soft);
     letter-spacing: 0.1em;
@@ -788,9 +796,9 @@
     display: flex; flex-direction: row; align-items: baseline; gap: 4px;
   }
   .stats-block .stat .stat-number { display: inline-flex; }
-  .stats-block .stat .n { font-size: 22px; font-weight: 700; display: inline; color: var(--blue-soft); }
-  .stats-block .stat .l { margin-top: 0; font-size: 14px; color: var(--ink-2); }
-  .stats-block .stat .suf { font-size: 14px; font-weight: 400; color: var(--ink-2); margin-left: 4px; }
+  .stats-block .stat .n { font-size: 34px; font-weight: 700; display: inline; color: var(--blue-soft); }
+  .stats-block .stat .l { margin-top: 0; font-size: 18px; color: var(--ink-2); }
+  .stats-block .stat .suf { font-size: 18px; font-weight: 400; color: var(--ink-2); margin-left: 4px; }
 
   /* FAQ */
   .faq-list { max-width: 760px; margin: 0 auto; }
@@ -897,6 +905,8 @@
     .foot-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
+<style>@media (max-width:880px){.foot-bottom{flex-direction:column;align-items:center;text-align:center;gap:14px}.sinope-credit-plain{position:static;transform:none;order:3}}</style>
+<style>@media (max-width:880px){.demo-shell{width:100%!important}}</style>
 </head>
 <body>
 <div class="bg"></div>
