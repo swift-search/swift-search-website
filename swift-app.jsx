@@ -623,7 +623,7 @@ function Stats() {
 { q: 'Does it work on Firefox, Safari or Edge?', a: "Not yet. Swift Search is built for Chrome. Other Chromium browsers like Edge and Brave will run it, though Google sign-in — and so the AI features — may not work there. Firefox and Safari need different builds, which we haven't done yet." },
 { q: 'Does it work in PDFs?', a: 'Yes. Highlight, annotate and save passages inside a PDF exactly as you would on a webpage.' },
 { q: 'Will it slow my browsing down?', a: "The menu only draws itself when you highlight something, and nothing is sent anywhere until you pick an action. There's no background activity while you read." },
-{ q: "Something's broken. How do I get help?", a: "Email swiftsearch@outlook.com. It's one person reading them, so you'll get a real answer." },
+{ q: "Something's broken. How do I get help?", a: "Email support@swiftsearch.online. It's one person reading them, so you'll get a real answer." },
 { q: 'How do I uninstall?', a: 'Right-click the icon and choose "Remove from Chrome". That clears everything stored on your machine. If you made an account for the AI features, delete it separately first — Settings, then Membership, then Delete account — which removes your record from our database for good.' }];
 
 
