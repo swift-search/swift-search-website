@@ -150,7 +150,7 @@ function Nav() {
     <nav className="nav">
       <div className="wrap nav-inner">
         <div className="brand" data-screen-label="Brand">
-          <a href="index.html" style={{ display: 'inline-flex' }}><LogoUploader size={40} /></a>
+          <a href="index.html" style={{ display: 'inline-flex' }}><BrandLogo size={40} /></a>
         </div>
         <div className="nav-links">
           <a href="about.html">About</a>
@@ -393,7 +393,8 @@ function Demo({ engines }) {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const start = vh, end = vh / 2 - r.height / 2;
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
+      const span = start - end;
+      const p = Math.min(1, Math.max(0, r.top >= end ? (start - r.top) / span : 1 - (end - r.top) / span));
       el.style.setProperty('--grow', (1 - Math.pow(1 - p, 3)).toFixed(4));
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
@@ -440,6 +441,13 @@ const FEATURE_GROUPS = [
 
 function Features() {
   const cols = 3;
+  React.useEffect(() => {
+    const els = document.querySelectorAll('#features .feature.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+    const io = new IntersectionObserver((ents) => ents.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((e) => io.observe(e));
+    return () => io.disconnect();
+  }, []);
   return (
     <section className="section" id="features" data-screen-label="03 Features">
       <div className="wrap">
@@ -469,7 +477,7 @@ function Features() {
                     {row.map((f, i) => {
                       const I = Icon[f.icon];
                       return (
-                        <div className="feature" key={i}>
+                        <div className="feature reveal" style={{ '--i': i }} key={i}>
                           <div className="ico"><I /></div>
                           <h4>{f.title}</h4>
                           <p>{f.body}</p>
@@ -490,6 +498,15 @@ function Features() {
 
 /* ---------- HOW IT WORKS ---------- */
 function HowItWorks() {
+  const stepsRef = React.useRef(null);
+  React.useEffect(() => {
+    const el = stepsRef.current;
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { el.classList.add('in'); return; }
+    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { el.classList.add('in'); io.disconnect(); } }, { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
     <section className="section" id="how-it-works" data-screen-label="04 How it works">
       <div className="wrap">
@@ -497,7 +514,7 @@ function HowItWorks() {
           <div className="kicker">How it works</div>
           <h2>Three steps. Two seconds.</h2>
         </div>
-        <div className="steps">
+        <div className="steps" ref={stepsRef}>
           <div className="step">
             <div className="num">01 / SELECT</div>
             <h4>Highlight anything.</h4>
@@ -583,7 +600,7 @@ function Stats() {
 }
 
 /* ---------- FAQ ---------- */const FAQS = [
-{ q: 'Is Swift Search free?', a: 'Yes. No ads, no in-app purchases, nothing to buy. The AI features run on a monthly allowance of credits, which is free too — everything else is unlimited. We build it because we use it.' },
+{ q: 'Is Swift Search free?', a: 'Yes. No ads, no in-app purchases, nothing to buy. The AI features run on a monthly allowance of credits, which is free too — everything else is unlimited.' },
 { q: 'Do I need an account?', a: 'Only for the AI features, because those run on a server and the allowance has to be counted against someone. Searching, highlighting, saving, find-in-page and everything else works without signing in.' },
 { q: 'Why does it need access to every website?', a: "So the menu can appear on whatever page you're reading. Swift Search doesn't read pages in the background — it looks at your selection when you highlight something and ask it to do something. Chrome has to show you the scariest version of that permission, but that's what it's for." },
 { q: 'Does it track my searches?', a: "Your highlighted text stays on your device until you ask for something. Click a site and it goes straight to that site, not through us. Two things do leave: Define looks the word up with a dictionary service, and Swift AI sends your selection to your chosen model, through our server. We never store either. We also collect anonymous usage counts — how often features are used, never what you searched — to see what's worth improving." },
@@ -652,7 +669,7 @@ function Footer() {
             <a className="brand foot-brand" href="index.html" style={{ display: 'inline-flex', marginBottom: 18 }}>
               <SwiftLogo size={40} />
             </a>
-            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere, all in one click.
+            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere. All in one click.
 
             </p>
           </div>

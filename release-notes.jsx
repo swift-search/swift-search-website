@@ -1,4 +1,4 @@
-// Release Notes page — reuses SwiftLogo / LogoUploader from swift-parts.jsx
+// Release Notes page — reuses SwiftLogo / BrandLogo from swift-parts.jsx
 const MAIN = 'index.html';
 const PRIVACY = 'privacy.html';
 
@@ -23,7 +23,7 @@ function Nav() {
     <nav className="nav">
       <div className="wrap nav-inner">
         <div className="brand" data-screen-label="Brand">
-          <a href={MAIN} style={{ display: 'inline-flex' }}><LogoUploader size={40} /></a>
+          <a href={MAIN} style={{ display: 'inline-flex' }}><BrandLogo size={40} /></a>
         </div>
         <div className="nav-links">
           <a href={MAIN}>Home</a>

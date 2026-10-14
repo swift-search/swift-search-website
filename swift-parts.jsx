@@ -5,7 +5,7 @@ const LOGO_ASPECT = 1235 / 299;
 
 // Display-only logo. Renders the Swift Search lockup at the requested height
 // (width auto-computed from aspect ratio). Reads from CSS variable
-// --swift-logo so it follows whatever the user uploads via <LogoUploader>.
+// --swift-logo, falling back to swift-logo-lockup.png.
 const SwiftLogo = ({ size = 28, style = {} }) => (
   <span
     aria-hidden="true"
@@ -23,87 +23,8 @@ const SwiftLogo = ({ size = 28, style = {} }) => (
   />
 );
 
-const LOGO_STORAGE_KEY = 'swift-search:user-logo';
-
-// On page load, restore previously-uploaded logo from localStorage so it
-// survives reload. Runs immediately (module top-level).
-try {
-  const saved = localStorage.getItem(LOGO_STORAGE_KEY);
-  if (saved) {
-    document.documentElement.style.setProperty('--swift-logo', `url("${saved}")`);
-  }
-} catch (_) {}
-
-// Uploader — the ONE place that accepts a drop/click. Mirrors the chosen
-// image to every <SwiftLogo> on the page via the --swift-logo CSS variable
-// and persists it in localStorage.
-function LogoUploader({ size = 36 }) {
-  const inputRef = React.useRef(null);
-  const [hasCustom, setHasCustom] = React.useState(() => {
-    try { return !!localStorage.getItem(LOGO_STORAGE_KEY); } catch (_) { return false; }
-  });
-  const [dragOver, setDragOver] = React.useState(false);
-
-  const applyDataURL = (url) => {
-    document.documentElement.style.setProperty('--swift-logo', `url("${url}")`);
-    try { localStorage.setItem(LOGO_STORAGE_KEY, url); } catch (_) {}
-    setHasCustom(true);
-  };
-
-  const readFile = (file) => {
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => applyDataURL(e.target.result);
-    reader.readAsDataURL(file);
-  };
-
-  const clear = (e) => {
-    e.stopPropagation();
-    document.documentElement.style.removeProperty('--swift-logo');
-    try { localStorage.removeItem(LOGO_STORAGE_KEY); } catch (_) {}
-    setHasCustom(false);
-  };
-
-  return (
-    <div
-      className={'logo-uploader' + (dragOver ? ' drag-over' : '')}
-      style={{ height: size, width: size * LOGO_ASPECT }}
-      onClick={() => inputRef.current && inputRef.current.click()}
-      onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-      onDragLeave={() => setDragOver(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setDragOver(false);
-        const file = e.dataTransfer.files && e.dataTransfer.files[0];
-        readFile(file);
-      }}
-      title={hasCustom ? 'Click to replace your logo' : 'Click or drop to upload your logo'}
-    >
-      <SwiftLogo size={size} style={{ pointerEvents: 'none' }} />
-      <div className="lu-overlay" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 16V4M6 10l6-6 6 6"/>
-          <path d="M4 20h16"/>
-        </svg>
-      </div>
-      {hasCustom && (
-        <button className="lu-clear" onClick={clear} title="Remove your logo" aria-label="Remove uploaded logo">
-          ×
-        </button>
-      )}
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif"
-        style={{ display: 'none' }}
-        onChange={(e) => {
-          const file = e.target.files && e.target.files[0];
-          readFile(file);
-          e.target.value = '';
-        }}
-      />
-    </div>
-  );
+function BrandLogo({ size = 36 }) {
+  return <SwiftLogo size={size} />;
 }
 
 // Engine catalog
@@ -168,6 +89,6 @@ function buildResults(engineId, query) {
 }
 
 window.SwiftLogo = SwiftLogo;
-window.LogoUploader = LogoUploader;
+window.BrandLogo = BrandLogo;
 window.ENGINES_INIT = ENGINES_INIT;
 window.buildResults = buildResults;
