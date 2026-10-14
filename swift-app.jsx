@@ -393,8 +393,7 @@ function Demo({ engines }) {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const start = vh, end = vh / 2 - r.height / 2;
-      const span = start - end;
-      const p = Math.min(1, Math.max(0, r.top >= end ? (start - r.top) / span : 1 - (end - r.top) / span));
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
       el.style.setProperty('--grow', (1 - Math.pow(1 - p, 3)).toFixed(4));
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
@@ -441,26 +440,6 @@ const FEATURE_GROUPS = [
 
 function Features() {
   const cols = 3;
-  React.useEffect(() => {
-    const cards = Array.from(document.querySelectorAll('#features .feature'));
-    if (!cards.length) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const vh = window.innerHeight;
-      cards.forEach((c) => {
-        const r = c.getBoundingClientRect();
-        const col = Array.from(c.parentNode.children).indexOf(c);
-        const p = Math.min(1, Math.max(0, (vh * 0.98 - r.top) / (vh * 0.3) - col * 0.22));
-        c.style.setProperty('--p', p.toFixed(3));
-      });
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
-  }, []);
   return (
     <section className="section" id="features" data-screen-label="03 Features">
       <div className="wrap">
@@ -511,15 +490,6 @@ function Features() {
 
 /* ---------- HOW IT WORKS ---------- */
 function HowItWorks() {
-  const stepsRef = React.useRef(null);
-  React.useEffect(() => {
-    const el = stepsRef.current;
-    if (!el) return;
-    if (!('IntersectionObserver' in window)) { el.classList.add('in'); return; }
-    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { el.classList.add('in'); io.disconnect(); } }, { threshold: 0.25 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
   return (
     <section className="section" id="how-it-works" data-screen-label="04 How it works">
       <div className="wrap">
@@ -527,7 +497,7 @@ function HowItWorks() {
           <div className="kicker">How it works</div>
           <h2>Three steps. Two seconds.</h2>
         </div>
-        <div className="steps" ref={stepsRef}>
+        <div className="steps">
           <div className="step">
             <div className="num">01 / SELECT</div>
             <h4>Highlight anything.</h4>
@@ -613,7 +583,7 @@ function Stats() {
 }
 
 /* ---------- FAQ ---------- */const FAQS = [
-{ q: 'Is Swift Search free?', a: 'Yes. No ads, no in-app purchases, nothing to buy. The AI features run on a monthly allowance of credits, which is free too — everything else is unlimited.' },
+{ q: 'Is Swift Search free?', a: 'Yes. No ads, no in-app purchases, nothing to buy. The AI features run on a monthly allowance of credits, which is free too — everything else is unlimited. We build it because we use it.' },
 { q: 'Do I need an account?', a: 'Only for the AI features, because those run on a server and the allowance has to be counted against someone. Searching, highlighting, saving, find-in-page and everything else works without signing in.' },
 { q: 'Why does it need access to every website?', a: "So the menu can appear on whatever page you're reading. Swift Search doesn't read pages in the background — it looks at your selection when you highlight something and ask it to do something. Chrome has to show you the scariest version of that permission, but that's what it's for." },
 { q: 'Does it track my searches?', a: "Your highlighted text stays on your device until you ask for something. Click a site and it goes straight to that site, not through us. Two things do leave: Define looks the word up with a dictionary service, and Swift AI sends your selection to your chosen model, through our server. We never store either. We also collect anonymous usage counts — how often features are used, never what you searched — to see what's worth improving." },
@@ -623,7 +593,7 @@ function Stats() {
 { q: 'Does it work on Firefox, Safari or Edge?', a: "Not yet. Swift Search is built for Chrome. Other Chromium browsers like Edge and Brave will run it, though Google sign-in — and so the AI features — may not work there. Firefox and Safari need different builds, which we haven't done yet." },
 { q: 'Does it work in PDFs?', a: 'Yes. Highlight, annotate and save passages inside a PDF exactly as you would on a webpage.' },
 { q: 'Will it slow my browsing down?', a: "The menu only draws itself when you highlight something, and nothing is sent anywhere until you pick an action. There's no background activity while you read." },
-{ q: "Something's broken. How do I get help?", a: "Email support@swiftsearch.online. It's one person reading them, so you'll get a real answer." },
+{ q: "Something's broken. How do I get help?", a: "Email swiftsearch@outlook.com. It's one person reading them, so you'll get a real answer." },
 { q: 'How do I uninstall?', a: 'Right-click the icon and choose "Remove from Chrome". That clears everything stored on your machine. If you made an account for the AI features, delete it separately first — Settings, then Membership, then Delete account — which removes your record from our database for good.' }];
 
 
@@ -682,7 +652,7 @@ function Footer() {
             <a className="brand foot-brand" href="index.html" style={{ display: 'inline-flex', marginBottom: 18 }}>
               <SwiftLogo size={40} />
             </a>
-            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere. All in one click.
+            <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.6, margin: 0, maxWidth: 320 }}>The fastest way to search the web. Highlight any text. Search anywhere, all in one click.
 
             </p>
           </div>
@@ -713,7 +683,7 @@ function Footer() {
             <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.5, fontWeight: 500 }}>Developed by</span>
             <img src="uploads/sinope_lockup_gray_diamond_gray_text_cutout.png" alt="Sinope" style={{ height: 56, width: 'auto' }} />
           </a>
-          <span>v4.0.1 · Last updated October 2026</span>
+          <span>v.4.1.0. Last updated October 2026</span>
         </div>
       </div>
     </footer>);
