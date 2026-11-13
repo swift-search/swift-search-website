@@ -1,0 +1,63 @@
+.nav-burger{display:none;width:44px;height:44px;border:0;background:none;padding:0;margin-left:auto;cursor:pointer;color:#F4F2EE;align-items:center;justify-content:center;flex:none}
+.nav-burger span,.nav-burger span:before,.nav-burger span:after{display:block;width:22px;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s}
+.nav-burger span{position:relative}.nav-burger span:before,.nav-burger span:after{content:"";position:absolute;left:0}
+.nav-burger span:before{top:-7px}.nav-burger span:after{top:7px}
+.nav-open .nav-burger span{background:transparent}.nav-open .nav-burger span:before{transform:translateY(7px) rotate(45deg)}.nav-open .nav-burger span:after{transform:translateY(-7px) rotate(-45deg)}
+.nav-menu{display:none}
+@media (max-width:1020px){
+.nav-burger{display:inline-flex}
+.nav-inner{gap:8px!important}
+.nav-menu{position:absolute;left:0;right:0;top:100%;display:none;flex-direction:column;padding:8px 20px 20px;background:rgba(21,21,24,.97);border-bottom:1px solid rgba(244,242,238,.14);max-height:calc(100vh - 68px);overflow:auto}
+.nav-open .nav-menu{display:flex}
+.nav-menu a{padding:14px 4px;font-size:17px;font-weight:600;color:#C4C2BE;border-bottom:1px solid rgba(244,242,238,.08)}
+.nav-menu a[aria-current="page"]{color:#F4F2EE}
+.nav-menu .soon{opacity:.5;pointer-events:none}
+.nav-menu .nav-cta{margin-top:16px;justify-content:center;border:0;padding:14px 18px;color:#1a1a1d;font-size:16px}
+}
+@media (max-width:640px){
+.wrap{padding-left:20px!important;padding-right:20px!important}
+.nav-inner>.nav-cta{display:none!important}
+.brand img,.brand-lockup{max-height:30px}
+h1{overflow-wrap:anywhere}
+img,video,iframe,svg{max-width:100%}
+.foot-grid{grid-template-columns:1fr!important}
+.foot-bottom{flex-direction:column!important;text-align:center}
+.post{padding:20px!important}
+input,textarea,select{font-size:16px!important;max-width:100%}
+table{display:block;overflow-x:auto}
+pre{overflow-x:auto}
+.rn-entry-head{flex-wrap:wrap!important;min-width:0}.rn-entry-head h3{white-space:normal!important;min-width:0;overflow-wrap:anywhere}
+}
+@media (max-width:880px){
+.compat-section{padding:56px 0 40px!important}
+.compat-section h2{font-size:clamp(26px,7.5vw,36px)!important;line-height:1.1}
+.compat-section>.wrap{margin-bottom:28px!important}
+.compat-split{padding:0 20px!important;gap:20px!important}
+.compat-card{flex:none!important;width:100%}
+.compat-stage{flex-direction:row!important;gap:10px!important;width:100%}
+.compat-track{flex:1 1 0;min-width:0;gap:10px!important;align-items:stretch!important}
+.compat-chip{min-width:0!important;padding:10px 12px!important;gap:10px!important;font-size:14px!important}
+.compat-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compat-chip img{width:24px;height:24px;flex:none}
+}
+@media (max-width:640px){
+#features .feature-stats .stats-block{align-items:flex-start!important;text-align:left!important;padding:24px 22px!important;gap:18px!important}
+#features .feature-stats .stats-block .stats{flex-direction:column!important;flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:flex-start!important;gap:18px!important}
+#features .feature-stats .stats-block .stat{align-items:flex-start!important;text-align:left!important}
+#features .feature-stats .stat-tip{right:auto!important;left:-8px;width:min(310px,calc(100vw - 64px))}
+}
+@media (max-width:880px){
+#features>.wrap{display:flex;flex-direction:column;gap:16px}
+#features .section-head{order:-1}
+#features .bp,#features .bp-top,#features .bp-left,#features .bp-mid,#features .bp-right,#features .bp-bot{display:contents!important}
+#features .bp>.bp-lines,#features .bp-lines{display:none!important}
+#features .bp-img{width:100%;height:auto;order:0}
+#features .feature-groups{order:2}
+#features .bp-ctrl{order:3;padding-left:0!important;margin-top:16px}
+#features .bp-ctrl .group-label{margin-left:0!important}
+#features .bp-ci:before,#features .bp-ci:after,#features .bp-ctrl .feature:before,#features .bp-ctrl .feature:after{display:none!important}
+#features .feature-stats{order:4}
+}
+@media (hover:none){
+.feature:hover,#features .feature:hover{transform:none!important}
+}

@@ -1,4 +1,4 @@
-// Release Notes page — reuses SwiftLogo / BrandLogo from swift-parts.jsx
+// Release Notes page, reuses SwiftLogo / BrandLogo from swift-parts.jsx
 const MAIN = 'index.html';
 const PRIVACY = 'privacy.html';
 
@@ -27,11 +27,12 @@ function Nav() {
         </div>
         <div className="nav-links">
           <a href={MAIN}>Home</a>
+          <a href="latest.html">Latest</a>
           <a href="about.html">About</a>
           <a href="support.html">Technical Support</a>
           <a href={MAIN + '#faq'}>FAQ</a>
           <a href="privacy.html">Privacy</a>
-          <a href="release-notes.html" style={{ color: '#fff' }}>Release Notes</a>
+          <a href="release-notes.html" aria-current="page">Release Notes</a>
         </div>
         <a href={MAIN + '#install'} className="nav-cta">
           <ChromeIcon /> Add to Chrome
@@ -45,8 +46,7 @@ function ReleaseHero() {
   return (
     <header className="about-hero" data-screen-label="Release / Hero">
       <div className="wrap">
-        <div className="kicker">Release Notes</div>
-        <h1>What's new in Swift Search.</h1>
+        <h1>What's new in Slick Click.</h1>
         <p className="lede">
           Every update, big and small. Here's what landed in the latest release.
         </p>
@@ -57,16 +57,48 @@ function ReleaseHero() {
 
 const RELEASES = [
   {
+    version: '4.3.0', date: 'November 2026',
+    entries: [
+      { tag: 'changed', tagLabel: 'Changed', title: 'Swift Search is now Slick Click', body: (
+        <p>A new name, a new logo and a fresh look. Same one-click searching.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Back up your data', body: (
+        <p>A new section in Settings lets you export your Library, noted words, highlights, websites, groups and settings to one file on your computer, and import it again later.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Greater keyboard optimization', body: (
+        <p>You can now move around the Slick Click floating menu with the keyboard alone, including the Slick AI menus, the model picker and the multi-search button. Good news for the keyboard lovers out there.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Tidier search suggestions', body: (
+        <p>Search suggestions are tidier: five lines at most, arrow keys to move through them, and they step aside when you pause typing so your site icons are never hidden.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Smoother multi-search', body: (
+        <p>Multi-search is smoother: tabs open in the order you pick, a bit faster, too.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'New banner in Settings', body: (
+        <p>A swish new banner at the top of the Settings page now keeps you informed with the latest updates and developments.</p>) },
+    ],
+  },
+  {
+    version: '4.2.0', date: 'October 2026',
+    entries: [
+      { tag: 'new', tagLabel: 'New', title: 'Tell Slick AI how to think', body: (
+        <p>Shape the way Slick AI answers by writing instructions in the Settings page.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Examples and Origin in Define', body: (
+        <p>Highlight a word and choose <strong>Examples</strong> to see it used in sentences, or <strong>Origin</strong> to see where it comes from.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'A word of the day', body: (
+        <p>A new word every day in your Library, with its meaning and an example, ready to save to your noted words.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Custom prompts', body: (
+        <p>Write your own AI instructions and run them on any highlighted text, from the Slick AI menu. Each can be up to 2,000 words, you can keep up to 10, and they follow you between your computers.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Your menu follows you', body: (
+        <p>Switch the lock on and the floating menu now stays open when you click through to another page, in the same spot you left it.</p>) },
+    ],
+  },
+  {
     version: '4.1.0', date: 'October 2026',
     entries: [
       { tag: 'new', tagLabel: 'New', title: 'Two new menu styles', body: (
-        <p>Two new free menu styles, <strong>Inkblot</strong> and <strong>Hologram</strong>. More ways to make Swift Search yours.</p>) },
-      { tag: 'new', tagLabel: 'New', title: 'Swift Guide: Swift AI shows you where things are', body: (
-        <p>Can't find a button or setting? Just ask Swift AI <em>"where do I cancel my subscription?"</em>, and it points right at it on the page.</p>) },
+        <p>Two new free menu styles, <strong>Inkblot</strong> and <strong>Hologram</strong>. More ways to make Slick Click yours.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Slick Guide: Slick AI shows you where things are', body: (
+        <p>Can't find a button or setting? Just ask Slick AI <em>"where do I cancel my subscription?"</em>, and it points right at it on the page.</p>) },
       { tag: 'changed', tagLabel: 'Changed', title: 'One box for chat and Find in page', body: (
-        <p>When you open Swift AI chat or Find in page, the main box in the floating menu is the one you type into, so the panels no longer carry their own text boxes.</p>) },
+        <p>When you open Slick AI chat or Find in page, the main box in the floating menu is the one you type into, so the panels no longer carry their own text boxes.</p>) },
       { tag: 'improved', tagLabel: 'Improved', title: 'Define is now faster', body: (
-        <p>Define now looks words up on Wiktionary and answers instantly, with Swift AI as the backup if a word can't be found.</p>) },
+        <p>Define now looks words up on Wiktionary and answers instantly, with Slick AI as the backup if a word can't be found.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'New suggestions', body: (
         <ul>
           <li><strong>"What does this stand for?"</strong> Highlight an acronym such as NASA, FBI or "lol" and a pill explains what it means.</li>
@@ -75,18 +107,18 @@ const RELEASES = [
           <li><strong>"Convert this?"</strong> understands British spellings such as "280 kilometres" and more units, including litres, pounds, stone, yards and gallons.</li>
         </ul>) },
       { tag: 'changed', tagLabel: 'Changed', title: 'Sign in with Google, and nothing more', body: (
-        <p>Swift Search no longer receives or stores your email address or name. Signing in simply confirms with Google that it is you. Email-and-password accounts have been removed.</p>) },
+        <p>Slick Click no longer receives or stores your email address or name. Signing in simply confirms with Google that it is you. Email-and-password accounts have been removed.</p>) },
     ],
   },
   {
     version: '4.0.0', date: 'September 2026',
     entries: [
-      { tag: 'changed', tagLabel: 'Changed', title: 'Swift AI runs in the cloud', body: (
-        <p>Swift AI runs in the cloud now, and needs a free account. The on-device model has been replaced by three real ones — <strong>Gemini</strong>, <strong>Grok</strong> and <strong>GLM</strong> — which you choose between. The results are in a different league, but they run on a server, so AI features ask you to sign in once. Everything else works without an account, as it always has.</p>) },
+      { tag: 'changed', tagLabel: 'Changed', title: 'Slick AI runs in the cloud', body: (
+        <p>Slick AI runs in the cloud now, and needs a free account. The on-device model has been replaced by three real ones: <strong>Gemini</strong>, <strong>Grok</strong> and <strong>GLM</strong>, which you choose between. The results are in a different league, but they run on a server, so AI features ask you to sign in once. Everything else works without an account, as it always has.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Everything is unlocked', body: (
         <p>There's no paid tier. Multi-search takes six sites, every rewrite tone and summary depth is available, your Library is unlimited, and all six menu themes are yours. The AI runs on a free monthly credit allowance that resets at the start of each month.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Find the button', body: (
-        <p>Ask where something is in plain words — <em>"where do I cancel my subscription"</em> — and Swift Search reads every control on the page, scrolls to the right one and rings it in blue. It shows the whole route, says when a control is hidden inside a menu, and admits when it doesn't know. It never clicks for you.</p>) },
+        <p>Ask where something is in plain words (<em>"where do I cancel my subscription"</em>) and Slick Click reads every control on the page, scrolls to the right one and rings it in blue. It shows the whole route, says when a control is hidden inside a menu, and admits when it doesn't know. It never clicks for you.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Find in page, by meaning', body: (
         <p>Describe the passage instead of guessing its words. Type <em>the bit about how they handle refunds</em> and it finds that section even if the page never uses the word. Short queries still run as an instant word-for-word search at no cost.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Page context', body: (
@@ -96,7 +128,7 @@ const RELEASES = [
       { tag: 'new', tagLabel: 'New', title: 'Reply to email', body: (
         <p>Highlight any message and ask for a reply. It drafts one, then you click wherever you want it pasted and it drops in. Escape cancels.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Voice search', body: (
-        <p>Hold the microphone in the toolbar or the floating menu — or hold <strong>Ctrl</strong> — and talk. Your words appear as you speak.</p>) },
+        <p>Hold the microphone in the toolbar or the floating menu, or hold <strong>Ctrl</strong>, and talk. Your words appear as you speak.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Search another site', body: (
         <p>A tile at the end of your list searches anywhere without giving it a permanent slot. Type two letters and pick, with suggestions drawn from your saved sites, your open tabs and a built-in list of 121 common ones.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Six menu themes', body: (
@@ -115,7 +147,7 @@ const RELEASES = [
       { tag: 'new', tagLabel: 'New', title: 'AI Summary', body: (
         <p>Summarize text on any webpage in one click. The model runs entirely on your device, so nothing you highlight leaves your browser.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'PDF support', body: (
-        <p>Swift Search works inside PDF files. Open any PDF in Chrome and the full floating menu is available — select text, search, highlight, summarize and use Find in page just as you would on a webpage.</p>) },
+        <p>Slick Click works inside PDF files. Open any PDF in Chrome and the full floating menu is available: select text, search, highlight, summarize and use Find in page just as you would on a webpage.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Find in page', body: (
         <p>Search for any word across the whole page. Every instance is highlighted and you can click straight to each one. Toggle <strong>Exact match</strong> to find only whole words.</p>) },
       { tag: 'new', tagLabel: 'New', title: 'Locked highlights', body: (
@@ -138,6 +170,7 @@ function ReleaseBody() {
             <div style={{ paddingTop: ri === 0 ? 12 : 0, paddingBottom: 8 }}>
               <span className="rn-version">▲ Version {r.version}</span>
               <div className="rn-date">{r.date}</div>
+              {r.intro && <p className="rn-intro">{r.intro}</p>}
             </div>
             {r.entries.map((e, i) => (
               <section className="rn-entry" key={i} data-screen-label={'Release / ' + e.title}>
@@ -178,6 +211,7 @@ function Footer() {
           <div>
             <h6>Resources</h6>
             <ul>
+              <li><span style={{ color: 'var(--ink-3)', cursor: 'default' }} aria-disabled="true">Tutorials <em style={{ fontSize: 11, fontStyle: 'normal', letterSpacing: '.06em', textTransform: 'uppercase', marginLeft: 6, padding: '2px 7px', border: '1px solid var(--line)', borderRadius: 999 }}>Coming soon</em></span></li>
               <li><a href="privacy.html">Privacy</a></li>
               <li><a href="terms.html">Terms of service</a></li>
               <li><a href="support.html">Contact</a></li>
@@ -185,12 +219,12 @@ function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>© 2026 Swift Search. All rights reserved.</span>
-          <a href="https://sinope.online" className="sinope-credit-plain" title="Sinope — Publisher" aria-label="Developed by Sinope">
+          <span>© 2026 Slick Click. All rights reserved.</span>
+          <span className="sinope-credit-plain" title="Sinope, Publisher" aria-label="Developed by Sinope" style={{ cursor: 'default' }}>
             <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.5, fontWeight: 500 }}>Developed by</span>
-            <img src="uploads/sinope_lockup_gray_diamond_gray_text_cutout.png" alt="Sinope" style={{ height: 56, width: 'auto' }} />
-          </a>
-          <span>v.4.1.0. Last updated October 2026</span>
+            <img src="sinope-lockup-gray.png" alt="Sinope" style={{ height: 46, width: 'auto' }} />
+          </span>
+          <span>v.4.3.0. Last updated November 2026</span>
         </div>
       </div>
     </footer>

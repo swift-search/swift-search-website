@@ -1,11 +1,11 @@
 // Shared bits: Logo, Icons, engine catalog, fake results
 
 // Aspect ratio of the full Swift Search lockup (mark + wordmark).
-const LOGO_ASPECT = 1235 / 299;
+const LOGO_ASPECT = 2397 / 664;
 
 // Display-only logo. Renders the Swift Search lockup at the requested height
 // (width auto-computed from aspect ratio). Reads from CSS variable
-// --swift-logo, falling back to swift-logo-lockup.png.
+// --swift-logo, falling back to slick-click-lockup.png.
 const SwiftLogo = ({ size = 28, style = {} }) => (
   <span
     aria-hidden="true"
@@ -14,7 +14,7 @@ const SwiftLogo = ({ size = 28, style = {} }) => (
       height: size,
       width: size * LOGO_ASPECT,
       flexShrink: 0,
-      backgroundImage: 'var(--swift-logo, url(swift-logo-lockup.png))',
+      backgroundImage: 'var(--swift-logo, url(slick-click-lockup.png))',
       backgroundSize: 'contain',
       backgroundPosition: 'left center',
       backgroundRepeat: 'no-repeat',
@@ -51,7 +51,7 @@ function buildResults(engineId, query) {
       { url: `nationalgeographic.com › encyclopedia`, title: `${q}, explained`, snippet: `An in-depth look at one of nature's most important chemical reactions and its impact on life on Earth.` },
     ],
     youtube: [
-      { url: `youtube.com › watch?v=…`, title: `${q} — explained in 5 minutes`, snippet: `2.1M views · A clear, animated breakdown of the topic for visual learners.` },
+      { url: `youtube.com › watch?v=…`, title: `${q} | explained in 5 minutes`, snippet: `2.1M views · A clear, animated breakdown of the topic for visual learners.` },
       { url: `youtube.com › watch?v=…`, title: `Why ${q} is crazier than you thought`, snippet: `850K views · Veritasium-style deep dive with surprising facts.` },
       { url: `youtube.com › watch?v=…`, title: `Crash Course: ${q}`, snippet: `1.4M views · Hank Green walks through the basics, fast and friendly.` },
     ],
@@ -60,7 +60,7 @@ function buildResults(engineId, query) {
       { url: `en.wikipedia.org › wiki › History_of_${q}`, title: `History of ${q}`, snippet: `Origins, key figures, and turning points that shaped the modern understanding.` },
     ],
     github: [
-      { url: `github.com › openai › ${q}`, title: `${q} — open-source repo (12.3k ⭐)`, snippet: `A community-maintained library for working with ${q}. MIT license. Last commit 2 days ago.` },
+      { url: `github.com › openai › ${q}`, title: `${q} | open-source repo (12.3k ⭐)`, snippet: `A community-maintained library for working with ${q}. MIT license. Last commit 2 days ago.` },
       { url: `github.com › topics › ${q}`, title: `Topic: ${q}`, snippet: `Browse 3,420 public repositories tagged with ${q}. Popular: starter kits, CLIs, examples.` },
     ],
     stackoverflow: [
@@ -68,21 +68,21 @@ function buildResults(engineId, query) {
       { url: `stackoverflow.com › questions › why-${q}`, title: `Why does ${q} return undefined?`, snippet: `A surprisingly common gotcha; the accepted answer covers async timing pitfalls.` },
     ],
     amazon: [
-      { url: `amazon.com › s?k=${q}`, title: `${q} — Books`, snippet: `Over 1,200 titles. Bestseller · 4.6 ★ · Prime delivery available.` },
+      { url: `amazon.com › s?k=${q}`, title: `${q} | Books`, snippet: `Over 1,200 titles. Bestseller · 4.6 ★ · Prime delivery available.` },
       { url: `amazon.com › s?k=${q}+kit`, title: `${q} starter kit`, snippet: `$34.99 · 18,402 ratings · Frequently bought with notebooks.` },
     ],
     reddit: [
-      { url: `reddit.com › r/explainlikeimfive › ${q}`, title: `ELI5: ${q}`, snippet: `1.2k upvotes · "I always thought it worked differently — this comment changed my whole understanding."` },
+      { url: `reddit.com › r/explainlikeimfive › ${q}`, title: `ELI5: ${q}`, snippet: `1.2k upvotes · "I always thought it worked differently | this comment changed my whole understanding."` },
       { url: `reddit.com › r/todayilearned`, title: `TIL about ${q}`, snippet: `Wholesome discussion with 340 comments, including some surprising tangents.` },
     ],
     spotify: [
       { url: `open.spotify.com › search › ${q}`, title: `Top results for "${q}"`, snippet: `Playlists, albums, podcasts. 1.4M monthly listeners across related artists.` },
     ],
     maps: [
-      { url: `google.com › maps › ${q}`, title: `${q} — nearby`, snippet: `Showing locations within 5 miles. Top result: 4.7 ★ · Open now · Reviews: 1,892.` },
+      { url: `google.com › maps › ${q}`, title: `${q} | nearby`, snippet: `Showing locations within 5 miles. Top result: 4.7 ★ · Open now · Reviews: 1,892.` },
     ],
     ddg: [
-      { url: `duckduckgo.com › ${q}`, title: `${q} — DuckDuckGo`, snippet: `Private search, no tracking. Showing 10 organic results.` },
+      { url: `duckduckgo.com › ${q}`, title: `${q} | DuckDuckGo`, snippet: `Private search, no tracking. Showing 10 organic results.` },
     ],
   };
   return map[engineId] || map.google;

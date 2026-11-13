@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Rebrand Sting</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;background:#0c0c0e;height:100%}#root{position:fixed;inset:0}.embed #root>div>div:nth-child(n+2){display:none!important}.embed #root>div{background:#151518!important}.embed svg{box-shadow:none!important;transform:scale(var(--k,.5))!important}a{color:#839CFF}a:hover{color:#a9bbff}</style>
+<script>window.OM_SCENES='[{"name":"Old","dur":1,"desc":"The Swift Search logo sits centered"},{"name":"Push","dur":1.2,"desc":"The Slick Click logo slides in from the left and pushes the old logo off the right"},{"name":"Settle","dur":2,"desc":"Slick Click holds at center with a slow drift"}]';</script>
+<script>window.OM_PLAYBACK='{"mode":"times","count":1}';</script>
+<script>const TWEAK_DEFAULTS=/*EDITMODE-BEGIN*/{"motionEditor":true}/*EDITMODE-END*/;</script>
+<script>if(/[?&]embed\b/.test(location.search))document.documentElement.classList.add("embed"),(function(){var g=Storage.prototype.getItem;Storage.prototype.getItem=function(k){return /:t$/.test(k)?"0":g.call(this,k)}})(),(function(){var f=function(){document.documentElement.style.setProperty("--k",Math.min(innerWidth/1280,innerHeight/720))};f();addEventListener("resize",f)})(),[200,600,1200].forEach(function(t){setTimeout(function(){dispatchEvent(new Event("resize"))},t)})</script></head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="animations-v3.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const W=1280,H=720,LW=560,LH=Math.round(560*665/2401),CX=W/2,CY=H/2,OH=Math.round(560*299/1235);
+const MOTION={enter:Easing.easeInOutCubic,pop:Easing.easeOutBack,drift:Easing.linear};
+function Piece(){
+  const {T,CUES}=useComposition();
+  const p=animate({from:0,to:1,start:CUES.Push,end:CUES.Settle-0.15,ease:MOTION.enter})(T);
+  const nx=-LW/2-20+p*(CX+LW/2+20);
+  const q=clamp((nx-40)/(CX-40),0,1);
+  const ox=Math.max(CX,nx+LW+40)+520*q*q;
+  const oldFade=1-clamp((q-0.35)/0.65,0,1);
+  const drift=1+0.035*clamp((T-CUES.Settle)/2,0,1);
+  const glow=animate({from:0,to:1,start:CUES.Push+0.4,end:CUES.Settle+0.5,ease:MOTION.enter})(T);
+  const speed=Math.abs(p<1?(1-p):0);
+  return <div style={{position:'absolute',inset:0,background:'#151518',overflow:'hidden'}}>
+    <div style={{position:'absolute',left:CX-420,top:CY-170,width:840,height:340,borderRadius:'50%',background:'radial-gradient(ellipse,rgba(131,156,255,.20),rgba(131,156,255,0) 70%)',opacity:glow}}></div>
+    <img src="swift-search-logo-old.png" alt="" style={{position:'absolute',width:LW,height:OH,left:ox-LW/2,top:CY-OH/2,opacity:oldFade,filter:`blur(${(q*6).toFixed(2)}px)`,transform:`rotate(${(q*q*5).toFixed(2)}deg)`}}/>
+    <img src="slick-click-lockup-accent.png" alt="" style={{position:'absolute',width:LW,height:LH,left:nx-LW/2,top:CY-LH/2,transform:`scale(${drift})`,filter:`blur(${(speed*speed*3).toFixed(2)}px)`}}/>
+  </div>;
+}
+function App(){
+  const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  return <>
+    <CompositionStage width={W} height={H} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#151518"><Piece/></CompositionStage>
+    <TweaksPanel><TweakSection label="Timeline"/><TweakToggle label="Motion editor" value={t.motionEditor} onChange={v=>setTweak('motionEditor',v)}/></TweaksPanel>
+  </>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

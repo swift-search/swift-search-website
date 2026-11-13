@@ -3,88 +3,82 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Technical Support — Swift Search</title>
+<title>Technical Support | Slick Click</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-:root{--bg-0:#06091f;--bg-1:#0a1130;--bg-2:#142154;--bg-3:#1d2f6e;--line:rgba(255,255,255,0.08);--line-2:rgba(255,255,255,0.14);--ink-0:#ffffff;--ink-1:rgba(255,255,255,0.86);--ink-2:rgba(255,255,255,0.62);--ink-3:rgba(255,255,255,0.42);--blue:#3b82f6;--blue-bright:#4f93ff;--blue-soft:#60a5fa;--highlight:rgba(96,165,250,0.32);--font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+:root{--bg-0:#151518;--bg-1:#1a1a1d;--bg-2:#1d1d21;--bg-3:#26262b;--line:rgba(244,242,238,0.08);--line-2:rgba(244,242,238,0.14);--ink-0:#F4F2EE;--ink-1:#E4E2DE;--ink-2:#C4C2BE;--ink-3:#A19FA3;--blue:#839cff;--blue-bright:#9fb1ff;--blue-soft:#839cff;--highlight:rgba(131,156,255,0.32);--font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{font-family:var(--font);color:var(--ink-1);background:var(--bg-0);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-::selection{background:var(--highlight);color:#fff}
+::selection{background:var(--highlight);color:#F4F2EE}
 a{color:inherit;text-decoration:none}
-.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(1200px 600px at 50% -10%,rgba(59,130,246,0.35),transparent 60%),radial-gradient(800px 500px at 80% 30%,rgba(29,47,110,0.55),transparent 70%),linear-gradient(180deg,#0a1130 0%,#070a22 40%,#06091f 100%)}
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#151518}
 .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(6,9,31,0.72);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(21,21,24,0.72);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:20px;padding:10px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:#fff}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:#F4F2EE}
 .brand img{width:auto;height:34px;display:block}
 .nav-links{display:flex;gap:22px}
 .nav-links a{font-size:14.5px;color:var(--ink-2);font-weight:500;transition:color .15s;white-space:nowrap}
-.nav-links a:hover{color:#fff}
-.nav-cta{ white-space: nowrap;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#fff;color:#0a1130!important;font-weight:700;font-size:14px;box-shadow:0 8px 24px -12px rgba(0,0,0,.6)}
+.nav-links a:hover{color:#F4F2EE}
+.nav-cta{ white-space: nowrap;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#F4F2EE;color:#1a1a1d!important;font-weight:700;font-size:14px;box-shadow:0 8px 24px -12px rgba(0,0,0,.6)}
 main,main.wrap{padding-top:88px;padding-bottom:120px}
 .kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-soft);text-align:center}
-h1{font-size:clamp(34px,5vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;color:#fff;text-align:center;margin:16px 0 0}
+h1{font-size:clamp(34px,5vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;color:#F4F2EE;text-align:center;margin:16px 0 0}
 .lede{max-width:560px;margin:18px auto 0;text-align:center;color:var(--ink-2);font-size:17px;line-height:1.6}
-.support-shell{max-width:640px;margin:56px auto 0;padding:36px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);box-shadow:0 30px 60px -30px rgba(0,0,0,0.6)}
+.support-shell{max-width:640px;margin:56px auto 0;padding:36px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(244,242,238,0.03),transparent);box-shadow:0 30px 60px -30px rgba(0,0,0,0.6)}
 .field{margin-bottom:22px}
 .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink-1);margin-bottom:8px}
 .field .req{color:var(--blue-soft)}
-.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line-2);background:rgba(255,255,255,0.04);color:#fff;font-family:var(--font);font-size:14.5px;transition:border-color .15s,background .15s}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line-2);background:rgba(244,242,238,0.04);color:#F4F2EE;font-family:var(--font);font-size:14.5px;transition:border-color .15s,background .15s}
 .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2360a5fa' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,0.06)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:rgba(244,242,238,0.06)}
 .field textarea{resize:vertical;min-height:120px;font-family:inherit}
-.field select option{color:#0a1130;background:#fff}
-.submit-btn{width:100%;padding:14px 20px;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;font-size:15.5px;margin-top:8px;transition:background .15s}
+.field select option{color:#1a1a1d;background:#F4F2EE}
+.submit-btn{width:100%;padding:14px 20px;border-radius:12px;background:var(--blue);color:#2B2B30;font-weight:700;font-size:15.5px;margin-top:8px;transition:background .15s}
 .submit-btn:hover{background:var(--blue-bright)}
 .confirm{display:none;text-align:center;padding:40px 0}
 .confirm.show{display:block}
-.confirm .check{width:56px;height:56px;border-radius:50%;background:rgba(96,165,250,0.16);border:1px solid var(--blue-soft);display:grid;place-items:center;margin:0 auto 18px}
-.confirm h3{color:#fff;font-size:22px;margin:0 0 8px}
+.confirm .check{width:56px;height:56px;border-radius:50%;background:rgba(131,156,255,0.16);border:1px solid var(--blue-soft);display:grid;place-items:center;margin:0 auto 18px}
+.confirm h3{color:#F4F2EE;font-size:22px;margin:0 0 8px}
 .confirm p{color:var(--ink-2);font-size:15px;margin:0}
 .alt-contact{text-align:center;margin-top:28px;color:var(--ink-3);font-size:13.5px}
 .alt-contact a{color:var(--blue-soft);font-weight:600}
 footer{border-top:1px solid var(--line);margin-top:60px;padding:50px 0 40px}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:36px;margin-bottom:40px}
-.foot-grid h6{color:#fff;margin:0 0 16px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.foot-grid h6{color:#F4F2EE;margin:0 0 16px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
 .foot-grid a,.foot-grid li{display:block;color:var(--ink-2);font-size:14px;padding:4px 0;list-style:none}
-.foot-grid a:hover{color:#fff}.foot-grid ul{padding:0;margin:0}
+.foot-grid a:hover{color:#F4F2EE}.foot-grid ul{padding:0;margin:0}
 .foot-brand{margin-bottom:18px}.foot-brand img{height:40px;width:auto}
 .foot-blurb{color:var(--ink-2);font-size:14px;line-height:1.6;margin:0;max-width:320px}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;color:#808080;font-size:13px;padding-top:24px;border-top:1px solid var(--line);gap:16px;position:relative}
-.foot-bottom a{color:#808080}.foot-bottom a:hover{color:#fff}
+.foot-bottom a{color:#808080}.foot-bottom a:hover{color:#F4F2EE}
 .sinope-credit-plain{display:inline-flex;align-items:center;gap:0;color:#808080;position:absolute;left:50%;top:calc(50% + 12px);transform:translate(-50%,-50%)}
 .sinope-credit-plain:hover{color:#808080}
-.sinope-credit-plain img{height:56px;width:auto;display:block;margin-left:-4px}
+.sinope-credit-plain img{height:46px;width:auto;display:block;margin-left:5px}
 .sinope-credit-plain .dev-by{font-size:9px;text-transform:uppercase;letter-spacing:.1em;opacity:.5;font-weight:500}
 @media (max-width:880px){.foot-grid{grid-template-columns:1fr 1fr}.sinope-credit-plain{position:static;transform:none}.foot-bottom{flex-wrap:wrap;gap:12px}}
 @media (max-width:720px){.nav-links{display:none}.support-shell{margin:40px 20px 0;padding:26px}}
 </style>
-<style id="nav-match">.nav,nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(8,13,38,0.55);border-bottom:1px solid var(--line)}.nav-inner,.nav-inner.wrap{height:68px;min-height:0;padding:0 32px;max-width:1240px;margin:0 auto}.brand img{height:40px!important;width:auto}.nav-links{gap:28px}.nav-cta{padding:10px 16px;transition:transform .15s,box-shadow .15s}.nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px rgba(255,255,255,0.4);filter:none}</style>
-</head>
+<style id="nav-match">.nav,nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(21,21,24,0.55);border-bottom:1px solid var(--line)}.nav-inner,.nav-inner.wrap{height:68px;min-height:0;padding:0 32px;max-width:1240px;margin:0 auto}.brand img{height:40px!important;width:auto}.nav-links{gap:28px}.nav-cta{padding:10px 16px;transition:transform .15s,box-shadow .15s}.nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px rgba(244,242,238,0.4);filter:none}</style>
+<style id="nav-fit">@media (max-width:1180px){.nav-links{gap:18px!important}.nav-links a{font-size:13.5px!important}}@media (max-width:1020px){.nav-links{display:none!important}}</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/favicon.ico" sizes="any" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" /><style id="site-match">h1,h2,h3,h4{font-family:"Archivo","Plus Jakarta Sans",sans-serif!important;font-weight:800}h3,h4{font-weight:700}.brand-lockup{display:block;position:relative;height:40px;width:calc(40px * 3032 / 840);background:url(slick-click-lockup-noperiod.svg) left center/contain no-repeat}.brand-lockup::after{content:"";position:absolute;inset:0;background:url(slick-click-period.svg) left center/contain no-repeat}@media(prefers-reduced-motion:no-preference){.brand-lockup::after{animation:dotFlash 2.4s ease-in-out infinite}}@keyframes dotFlash{0%,100%{opacity:1}50%{opacity:.08}}</style><link rel="stylesheet" href="mobile.css" /><script defer src="mobile.js"></script></head>
 <body>
 <div class="bg"></div>
 <nav>
 <div class="wrap nav-inner">
-<a href="index.html" class="brand"><img src="swift-logo-lockup.png" alt="Swift Search" onerror="this.style.display='none'" /></a>
-<div class="nav-links">
-<a href="about.html">About</a>
-<a href="support.html" style="color:#fff">Technical Support</a>
-<a href="index.html#faq">FAQ</a>
-<a href="privacy.html">Privacy</a>
-<a href="release-notes.html">Release Notes</a>
-</div>
-<a href="https://chromewebstore.google.com/detail/swift-search/lididcfmfpaiaeapmjpddgicifbjelja?hl=en-US&amp;utm_source=ext_sidebar" target="_blank" rel="noopener" class="nav-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12L2.474 6.5A11 11 0 0 1 21.526 6.5Z" fill="#EA4335"></path><path d="M12 12L21.526 6.5A11 11 0 0 1 12 23Z" fill="#FBBC05"></path><path d="M12 12L12 23A11 11 0 0 1 2.474 6.5Z" fill="#34A853"></path><circle cx="12" cy="12" r="5" fill="#fff"></circle><circle cx="12" cy="12" r="4" fill="#4285F4"></circle></svg> Add to Chrome</a>
+<a href="index.html" class="brand"><span class="brand-lockup" role="img" aria-label="Slick Click"></span></a>
+<div class="nav-links"><a href="index.html">Home</a><a href="latest.html">Latest</a><a href="about.html">About</a><a href="support.html" aria-current="page">Technical Support</a><a href="index.html#faq">FAQ</a><a href="privacy.html">Privacy</a><a href="release-notes.html">Release Notes</a></div>
+<a href="https://chromewebstore.google.com/detail/swift-search/lididcfmfpaiaeapmjpddgicifbjelja?hl=en-US&amp;utm_source=ext_sidebar" target="_blank" rel="noopener" class="nav-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12L2.474 6.5A11 11 0 0 1 21.526 6.5Z" fill="#EA4335"></path><path d="M12 12L21.526 6.5A11 11 0 0 1 12 23Z" fill="#FBBC05"></path><path d="M12 12L12 23A11 11 0 0 1 2.474 6.5Z" fill="#34A853"></path><circle cx="12" cy="12" r="5" fill="#F4F2EE"></circle><circle cx="12" cy="12" r="4" fill="#4285F4"></circle></svg> Add to Chrome</a>
 </div>
 </nav>
 <main>
 <div class="wrap">
-<div class="kicker">We're here to help</div>
 <h1>Technical support</h1>
-<p class="lede">Need help with Swift Search? Fill out the form below and we'll get back to you as soon as possible. Please be as detailed as possible so we can solve your issue quickly.</p>
+<p class="lede">Need help with Slick Click? Fill out the form below and we'll get back to you as soon as possible. Please be as detailed as possible so we can solve your issue quickly.</p>
 <div class="support-shell">
 <form id="supportForm">
 <div class="field"><label>Name <span class="req">*</span></label><input type="text" name="name" required placeholder="Your name" /></div>
@@ -95,7 +89,7 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:50px 0 40px}
 <option>Bug or technical issue</option>
 <option>A website is not working</option>
 <option>Feature request</option>
-<option>Question about how to use Swift Search</option>
+<option>Question about how to use Slick Click</option>
 <option>Privacy or data concern</option>
 <option>Other</option>
 </select>
@@ -105,36 +99,39 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:50px 0 40px}
 <button type="submit" class="submit-btn">Submit</button>
 </form>
 <div class="confirm" id="confirmMsg">
-<div class="check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-<h3>Thanks — message received</h3>
+<div class="check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#839cff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+<h3>Thanks, message received</h3>
 <p>We'll get back to you at the email address you provided as soon as possible.</p>
 </div>
 </div>
-<div class="alt-contact">You can also reach us any time at <a href="mailto:swiftsearch@outlook.com">swiftsearch@outlook.com</a></div>
+<div class="alt-contact">You can also reach us any time at <a href="mailto:support@slickclick.app">support@slickclick.app</a></div>
 </div>
 </main>
 <footer>
 <div class="wrap">
 <div class="foot-grid">
 <div>
-<a class="brand foot-brand" href="index.html"><img src="swift-logo-lockup.png" alt="Swift Search" /></a>
+<a class="brand foot-brand" href="index.html"><img src="slick-click-lockup.png" alt="Slick Click" /></a>
 <p class="foot-blurb">The fastest way to search the web. Highlight any text. Search anywhere, all in one click.</p>
 </div>
 <div><h6>Product</h6><ul><li><a href="about.html">About</a></li><li><a href="index.html#features">Features</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
-<div><h6>Resources</h6><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of service</a></li><li><a href="support.html">Contact</a></li></ul></div>
+<div><h6>Resources</h6><ul><li><span style="color:var(--ink-3);cursor:default" aria-disabled="true">Tutorials <em style="font-size:11px;font-style:normal;letter-spacing:.06em;text-transform:uppercase;margin-left:6px;padding:2px 7px;border:1px solid var(--line);border-radius:999px">Coming soon</em></span></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms of service</a></li><li><a href="support.html">Contact</a></li></ul></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Swift Search. All rights reserved.</span>
-<a href="https://sinope.online" class="sinope-credit-plain" title="Sinope — Publisher" aria-label="Developed by Sinope"><span class="dev-by">Developed by</span><img src="uploads/sinope_lockup_gray_diamond_gray_text_cutout.png" alt="Sinope" /></a>
-<span>v.4.1.0. Last updated October 2026</span>
+<span>© 2026 Slick Click. All rights reserved.</span>
+<a href="https://sinope.online" class="sinope-credit-plain" title="Sinope, Publisher" aria-label="Developed by Sinope"><span class="dev-by">Developed by</span><img src="sinope-lockup-gray.png" alt="Sinope" /></a>
+<span>v.4.3.0. Last updated November 2026</span>
 </div>
 </div>
 </footer>
 <script>
-document.getElementById('supportForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('confirmMsg').classList.add('show');
+var FORM_ENDPOINT='https://api.web3forms.com/submit',ACCESS_KEY='84b7dca6-beac-4ebe-bc90-51be3827eb87';
+var TO='support@slickclick.app';
+document.getElementById('supportForm').addEventListener('submit',function(e){
+e.preventDefault();var f=this,d=Object.fromEntries(new FormData(f)),b=f.querySelector('.submit-btn'),done=function(){f.style.display='none';document.getElementById('confirmMsg').classList.add('show')};
+if(!ACCESS_KEY){var body='Name: '+d.name+'\nEmail: '+d.email+'\nBrowser/OS: '+(d.env||'')+'\n\n'+d.message;location.href='mailto:'+TO+'?subject='+encodeURIComponent('[Support] '+d.topic)+'&body='+encodeURIComponent(body);done();return}
+b.disabled=true;b.textContent='Sending...';
+fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(Object.assign({access_key:ACCESS_KEY,subject:'[Support] '+d.topic,from_name:d.name,replyto:d.email},d))}).then(function(r){return r.json()}).then(function(j){if(!j.success)throw 0;done()}).catch(function(){b.disabled=false;b.textContent='Submit';alert('Sorry, that did not send. Please email '+TO+' directly.')});
 });
 </script>
 </body>
