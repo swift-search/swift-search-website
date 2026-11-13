@@ -57,6 +57,23 @@ function ReleaseHero() {
 
 const RELEASES = [
   {
+    version: '4.4.0', date: 'November 2026',
+    entries: [
+      { tag: 'new', tagLabel: 'New', title: 'New menu theme', body: (
+        <p>“Mitosis”, a new animated menu theme for the floating menu.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Copy link to text', body: (
+        <p>Highlight text, hold the Copy button and choose “Copy link to text” to get a link. Opening the link will take you to the exact words that were highlighted on the page.</p>) },
+      { tag: 'new', tagLabel: 'New', title: 'Translate added to the menu', body: (
+        <p>Translate any highlighted text into your language of choice, straight from the Slick AI menu.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Convert suggestive pill expanded', body: (
+        <p>It now turns percentages into decimals and fractions, and back again: highlight 75% or 3/4 and get the answer instantly.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Find in page improved', body: (
+        <p>It now shows you every place that matches what you describe, in page order, with the best match starred.</p>) },
+      { tag: 'improved', tagLabel: 'Improved', title: 'Slick Guide is more accurate and efficient', body: (
+        <p>It understands your questions better, reads the whole page and finds more buttons.</p>) },
+    ],
+  },
+  {
     version: '4.3.0', date: 'November 2026',
     entries: [
       { tag: 'changed', tagLabel: 'Changed', title: 'Swift Search is now Slick Click', body: (
@@ -168,7 +185,7 @@ function ReleaseBody() {
         {RELEASES.map((r, ri) => (
           <div className="rn-release" key={r.version}>
             <div style={{ paddingTop: ri === 0 ? 12 : 0, paddingBottom: 8 }}>
-              <span className="rn-version">▲ Version {r.version}</span>
+              <span className="rn-version"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 10.5L10.5 3.5M5 3.5h5.5V9" /></svg>Version {r.version}</span>
               <div className="rn-date">{r.date}</div>
               {r.intro && <p className="rn-intro">{r.intro}</p>}
             </div>
